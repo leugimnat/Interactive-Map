@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interactive Map</title>
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div id="map" aria-label="Interactive map"></div>
+
+    <!-- Overlay controls -->
+    <div class="controls" role="region" aria-label="Map controls and search">
+      <div class="brand">
+        <span class="logo">🗺️</span>
+        <h1>Interactive Map</h1>
+      </div>
+      <form id="searchForm" class="search" autocomplete="off">
+        <label class="sr-only" for="searchInput">Search by name or category</label>
+        <input
+          id="searchInput"
+          name="q"
+          type="search"
+          placeholder="Search places or categories..."
+          aria-label="Search places or categories"
+        />
+        <label class="sr-only" for="categoryFilter">Filter by category</label>
+        <select id="categoryFilter" aria-label="Filter by category">
+          <option value="all">All categories</option>
+        </select>
+        <button type="submit" title="Search">Search</button>
+        <button type="button" id="clearBtn" title="Clear search" aria-label="Clear search">Clear</button>
+      </form>
+
+      <div id="results" class="results" role="region" aria-label="Search results" hidden>
+        <ul id="resultsList"></ul>
+      </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- App JS -->
+    <script src="assets/js/app.js"></script>
+  </body>
+  </html>
