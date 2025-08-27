@@ -1,60 +1,141 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Interactive Map</title>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Interactive map application with real-time location search, powered by Google Maps and Places API">
+  <meta name="keywords" content="interactive map, location search, google maps, places, cities, countries">
+  <meta name="author" content="Interactive Map App">
+  <meta name="theme-color" content="#0a0e1a">
+  
+  <title>Interactive Map Explorer</title>
+  
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://maps.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!-- App Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  
+  <!-- Favicon and app icons -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+</head>
 
-    <!-- Leaflet CSS -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
-
-    <!-- App CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-  </head>
-  <body>
-    <div id="map" aria-label="Interactive map"></div>
-
-    <!-- Overlay controls -->
-    <div class="controls" role="region" aria-label="Map controls and search">
-      <div class="brand">
-        <span class="logo">🗺️</span>
-        <h1>Interactive Map</h1>
-      </div>
-      <form id="searchForm" class="search" autocomplete="off">
-        <label class="sr-only" for="searchInput">Search by name or category</label>
-        <input
-          id="searchInput"
-          name="q"
-          type="search"
-          placeholder="Search places or categories..."
-          aria-label="Search places or categories"
-        />
-        <label class="sr-only" for="categoryFilter">Filter by category</label>
-        <select id="categoryFilter" aria-label="Filter by category">
-          <option value="all">All categories</option>
-        </select>
-        <button type="submit" title="Search">Search</button>
-        <button type="button" id="clearBtn" title="Clear search" aria-label="Clear search">Clear</button>
-      </form>
-
-      <div id="results" class="results" role="region" aria-label="Search results" hidden>
-        <ul id="resultsList"></ul>
-      </div>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Map Container -->
+  <main id="map" class="map-container" role="main" aria-label="Interactive world map">
+    <div class="map-loading" aria-hidden="true">
+      <div class="loading-spinner"></div>
+      <p>Loading map...</p>
     </div>
+  </main>
 
-    <!-- Leaflet JS -->
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
+  <!-- Control Panel -->
+  <aside class="control-panel" role="complementary" aria-label="Map controls and search">
+    <!-- Brand Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon" role="img" aria-label="Map icon">🗺️</span>
+        <div class="brand-text">
+          <h1 class="app-title">Map Explorer</h1>
+          <p class="app-subtitle">Discover the world</p>
+        </div>
+      </div>
+    </header>
 
-    <!-- App JS -->
-    <script src="assets/js/app.js"></script>
-  </body>
-  </html>
+    <!-- Search Section -->
+    <section class="search-section" aria-labelledby="search-heading">
+      <h2 id="search-heading" class="sr-only">Search for locations and places</h2>
+      
+      <form class="search-form" id="searchForm" role="search" autocomplete="off">
+        <div class="search-input-group">
+          <label for="searchInput" class="search-label">
+            <span class="sr-only">Search for places, cities, states, or countries</span>
+            <input
+              id="searchInput"
+              name="query"
+              type="search"
+              class="search-input"
+              placeholder="Search places, cities, states, or countries..."
+              aria-describedby="search-help"
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <span class="search-icon" aria-hidden="true">🔍</span>
+          </label>
+          <small id="search-help" class="search-help">
+            Try searching for specific places or geographic locations
+          </small>
+        </div>
+
+        <div class="filter-group">
+          <label for="categoryFilter" class="filter-label">Category</label>
+          <select id="categoryFilter" class="category-filter" aria-label="Filter results by category">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary" aria-describedby="search-btn-help">
+            <span class="btn-icon" aria-hidden="true">🔍</span>
+            <span class="btn-text">Search</span>
+          </button>
+          <button type="button" id="clearBtn" class="btn btn-secondary" aria-label="Clear search and reset map">
+            <span class="btn-icon" aria-hidden="true">✕</span>
+            <span class="btn-text">Clear</span>
+          </button>
+        </div>
+        
+        <small id="search-btn-help" class="sr-only">
+          Press Enter or click to search for locations
+        </small>
+      </form>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" aria-labelledby="results-heading">
+      <h2 id="results-heading" class="sr-only">Search results</h2>
+      <div id="results" class="search-results" role="region" aria-live="polite" hidden>
+        <div class="results-header">
+          <h3 class="results-title">Search Results</h3>
+          <span class="results-count" id="resultsCount" aria-live="polite"></span>
+        </div>
+        <ul id="resultsList" class="results-list" role="list"></ul>
+      </div>
+    </section>
+  </aside>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+    <div class="loading-content">
+      <div class="loading-spinner large"></div>
+      <h2>Initializing Map</h2>
+      <p>Please wait while we load the interactive map...</p>
+    </div>
+  </div>
+
+  <!-- Error Overlay -->
+  <div id="errorOverlay" class="error-overlay" aria-hidden="true" role="alert">
+    <div class="error-content">
+      <div class="error-icon" aria-hidden="true">⚠️</div>
+      <h2>Unable to Load Map</h2>
+      <p id="errorMessage">There was a problem loading the map. Please check your internet connection and try again.</p>
+      <button class="btn btn-primary" onclick="location.reload()">
+        <span class="btn-icon" aria-hidden="true">🔄</span>
+        <span class="btn-text">Retry</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- App Scripts -->
+  <script>
+    // Remove no-js class when JavaScript is available
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
