@@ -1,6 +1,6 @@
 # Interactive Map
 
-A responsive interactive map built with Google Maps API, using HTML, CSS, and JavaScript. This map leverages Google's extensive location database instead of requiring static location data.
+A responsive interactive map built with Google Maps API, using HTML, CSS, and JavaScript. This map leverages Google's extensive location database instead of requiring static location data. Project Created for submission to Unified Mentor.
 
 ## Features
 - **Geographic location search** - Search for cities, states, countries, and regions
