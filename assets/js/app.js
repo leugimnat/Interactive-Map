@@ -1,7 +1,3 @@
-/**
- * Interactive Map Application - Refactored Single File
- * All modules combined for compatibility
- */
 (function() {
 'use strict';
 
