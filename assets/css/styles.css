@@ -1,8 +1,6 @@
-/* ===== MODERN INTERACTIVE MAP STYLES ===== */
-
-/* CSS Custom Properties (Variables) */
+/* CCS Customs */
 :root {
-  /* Color System */
+  /* System Color */
   --color-primary: #0066cc;
   --color-primary-dark: #004499;
   --color-secondary: #6366f1;
@@ -75,7 +73,7 @@
   --z-tooltip: 1070;
 }
 
-/* ===== RESET & BASE STYLES ===== */
+/* CSS Resets */
 
 *,
 *::before,
@@ -102,7 +100,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== ACCESSIBILITY ===== */
+/* Accessibility */
 
 .skip-link {
   position: absolute;
@@ -144,7 +142,7 @@ body {
   outline-offset: 2px;
 }
 
-/* ===== MAP CONTAINER ===== */
+/* Map Containers */
 
 .map-container {
   position: fixed;
@@ -183,7 +181,7 @@ body {
   border-radius: var(--radius-lg) !important;
 }
 
-/* ===== CONTROL PANEL ===== */
+/* Control Panel */
 
 .control-panel {
   position: fixed;
@@ -202,7 +200,7 @@ body {
   pointer-events: auto;
 }
 
-/* ===== APP HEADER ===== */
+/* Application Header */
 
 .app-header {
   background: var(--bg-glass);
@@ -254,7 +252,7 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* ===== SEARCH SECTION ===== */
+/* Search Bar */
 
 .search-section {
   background: var(--bg-glass);
@@ -422,7 +420,7 @@ body {
   font-weight: 600;
 }
 
-/* Enhanced styling for clear/close buttons */
+/* !important Button Styling */
 #clearBtn,
 .btn[aria-label*="Clear"],
 .btn[aria-label*="Close"] {
@@ -450,7 +448,7 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* ===== RESULTS SECTION ===== */
+/* Search Results */
 
 .results-section {
   background: var(--bg-glass);
@@ -591,7 +589,7 @@ body {
   transform: scale(1.05);
 }
 
-/* ===== LOADING OVERLAY ===== */
+/* Loading Overlay */
 
 .loading-overlay {
   position: fixed;
@@ -631,7 +629,7 @@ body {
   line-height: 1.6;
 }
 
-/* ===== ERROR OVERLAY ===== */
+/* Error Overlay */
 
 .error-overlay {
   position: fixed;
@@ -682,7 +680,7 @@ body {
   margin-bottom: var(--space-6);
 }
 
-/* ===== LOADING SPINNER ===== */
+/* Spinner */
 
 .loading-spinner {
   width: 2rem;
@@ -705,7 +703,7 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* ===== GOOGLE MAPS INFO WINDOW ===== */
+/* Google Maps Info Window */
 
 .gm-style .gm-style-iw-c {
   border-radius: var(--radius-2xl) !important;
@@ -891,7 +889,7 @@ body {
   background: var(--color-primary-dark) !important;
 }
 
-/* ===== GOOGLE MAPS DEFAULT POI INFO WINDOWS ===== */
+/* POI and Results */
 
 /* Override Google's default POI info window styling */
 .gm-style .gm-style-iw-chr {
@@ -1185,7 +1183,7 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/* Resonsive Designs */
 
 /* Large screens */
 @media (min-width: 1024px) {
@@ -1319,7 +1317,7 @@ body {
   }
 }
 
-/* ===== ACCESSIBILITY & PREFERENCES ===== */
+/* Accessibility & Preferences */
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -1357,7 +1355,7 @@ body {
   }
 }
 
-/* ===== UTILITY CLASSES ===== */
+/* Edge Cases */
 
 .hidden {
   display: none !important;
@@ -1403,7 +1401,7 @@ body {
   text-align: right !important;
 }
 
-/* ===== PRINT STYLES ===== */
+/* Print Styles */
 
 @media print {
   .control-panel,
@@ -1419,7 +1417,7 @@ body {
   }
 }
 
-/* ===== ANIMATIONS ===== */
+/* Animation */
 
 @keyframes fadeIn {
   from {
@@ -1465,7 +1463,7 @@ body {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* ===== NO-JS FALLBACK ===== */
+/* Fallback */
 
 .no-js .control-panel {
   position: static;
